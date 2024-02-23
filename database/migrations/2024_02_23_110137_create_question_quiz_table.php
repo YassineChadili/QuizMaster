@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('question_quiz', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('question_id')->references('id')->on('questions');
+            $table->foreignId('quiz_id')->references('id')->on('quizzes');
             $table->timestamps();
         });
     }

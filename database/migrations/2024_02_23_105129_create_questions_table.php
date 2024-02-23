@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->string('question');
+            $table->enum('type', ['multiple choice', 'open']);
+            $table->boolean('is_in_use');
             $table->timestamps();
         });
     }

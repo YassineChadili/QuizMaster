@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('question_tag', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('question_id')->references('id')->on('questions');
+            $table->foreignId('tag_id')->references('id')->on('tags');
             $table->timestamps();
         });
     }
