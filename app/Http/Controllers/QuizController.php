@@ -61,4 +61,9 @@ class QuizController extends Controller
     {
         //
     }
+
+    public function export() 
+    {
+       
+    }
 }

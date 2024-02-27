@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('quiz', QuizController::class);
+Route::post('/quiz/export', [QuizController::class, 'export'])->name('quiz.export');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
