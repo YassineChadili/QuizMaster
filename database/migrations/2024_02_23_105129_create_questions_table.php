@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('question');
             $table->enum('type', ['multiple choice', 'open']);
-            $table->boolean('is_in_use');
             $table->timestamps();
         });
     }
