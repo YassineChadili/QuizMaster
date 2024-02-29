@@ -10,6 +10,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <a href="{{ route('quiz.index') }}" enctype="multipart/form-data">Terug</a>
+                    <form action="{{ route('quiz.export') }}" method="post">
+                        @csrf
+                        <button type="submit">Exporteren</button>
+                    </form>
                     <h1 class="font-bold text-2xl">{{ $quiz->name }}</h1>
                     <h2 class="font-bold mt-6">Vragen:</h2>
                     <ul>
