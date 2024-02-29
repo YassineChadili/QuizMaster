@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('quiz', QuizController::class);
+Route::post('/quiz/export', [QuizController::class, 'export'])->name('quiz.export');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
