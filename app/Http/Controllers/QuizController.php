@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,27 @@ class QuizController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('quiz.index')->with('message', 'toets is succesvol aangemaakt.');
+        return redirect()->route('quiz.index')->with('message', 'Toets is succesvol aangemaakt.');
+    }
+
+    public function addQuestionsToQuiz(Request $request, Quiz $quiz)
+    {
+        // Haal de ID's op van de vragen die aan de quiz moeten worden toegevoegd
+        $questionIds = $request->input('question_ids');
+
+        // Voeg de vragen toe aan de quiz
+        $quiz->questions()->attach($questionIds);
+
+        // Haal de vragen en andere gerelateerde gegevens op voor de showpagina van de quiz
+        $quiz->load('questions.answers', 'tags');
+
+        return redirect()->route('quiz.show', ['quiz' => $quiz])->with('message', 'Vragen zijn succesvol aan de quiz toegevoegd.');
+    }
+
+    public function addQuestionsQuiz(Quiz $quiz)
+    {
+        $questions = Question::all();
+        return view('quiz.addQuestionsQuiz', ['quiz' => $quiz, 'questions' => $questions]);
     }
 
     /**
