@@ -16,9 +16,9 @@
         <main>
             <div class="welcome-msg">
                 @if(isset($user))
-                    <h1>Welkom {{ $user }}</h1>
+                    <h1 style="font-size: 40px">Welkom {{ $user }}</h1>
                 @else
-                    <h1>Welkom Gebruiker</h1>
+                    <h1 style="font-size: 40px">Welkom Gebruiker</h1>
                 @endif
                 <a class="btn-overview" href="{{ url('/overview') }}">Naar Overzicht</a>
             </div>
