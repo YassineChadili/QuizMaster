@@ -11,7 +11,7 @@
         <div class="flex items-center">
             @if (Route::has('login'))
                 @auth
-                    <a href="{{ url('/dashboard') }}"><img src="{{ asset('img/user-icon.png') }}" alt="user-dashboard"></a>
+                    <a href="{{ url('/dashboard') }}"><img src="{{ asset('img/user-icon.png') }}" alt="user-dashboard" width="150"></a>
                 @else
                     <a href="{{ route('register') }}" class="text-2xl">Register</a>
                     <a href="{{ route('login') }}" class="text-2xl mx-5">Login</a>
