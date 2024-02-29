@@ -29,7 +29,15 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Quiz::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('quiz.index')->with('message', 'toets is succesvol aangemaakt.');
     }
 
     /**

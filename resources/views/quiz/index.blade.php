@@ -10,7 +10,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="overflow-x-auto">
-                        <table class="min-w-full table-auto">
+                        <a class="px-6 py-3 text-left" href="{{ route('quiz.create') }}" enctype="multipart/form-data">Toets aanmaken</a>
+                        <table class="min-w-full table-auto mt-5">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Toets naam</th>
