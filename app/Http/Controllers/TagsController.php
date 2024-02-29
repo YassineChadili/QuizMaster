@@ -36,7 +36,7 @@ class TagsController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('tags.create');
+        return redirect()->route('tags.index')->with('Succes', 'De tag is aangemaakt');
     }
 
     /**
