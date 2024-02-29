@@ -9,9 +9,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('quiz.export') }}" method="post">
-                        @csrf
-                    </form>
                     <div class="overflow-x-auto">
                         <table class="min-w-full table-auto">
                             <thead class="bg-gray-50">
@@ -24,7 +21,10 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <a href="{{ route('quiz.show', $quiz) }}" class="text-blue-500 hover:text-blue-700">{{ $quiz->name }}</a>
-                                            <button class="mr-4" type="submit">Exporteren</button>
+                                            <form action="{{ route('quiz.export') }}" method="post">
+                                                @csrf
+                                                <button type="submit">Exporteren</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
