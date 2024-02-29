@@ -14,4 +14,11 @@ class Quiz extends Model
         return $this->belongsToMany(Question::class, 'question_quiz', 'quiz_id', 'question_id')
             ->withTimestamps();
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'question_quiz', 'quiz_id', 'question_id')
+            ->withTimestamps();
+    }
+
 }
