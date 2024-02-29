@@ -1,5 +1,4 @@
 <div>
-    Aantal vragen:
     <table>
         <thead class="border-2 border-black">
             <tr class="divide-x-2 divide-y-2 divide-black">
@@ -11,10 +10,9 @@
         <tbody class="border-2 border-black divide-y-2 divide-black">
             @foreach ($questions as $question)
                 <tr class="divide-x-2 divide-black">
-                    <td>{{ $question->question }}</td>
-                    <td class="divide-y-2 divide-gray-300">
-
-                        <!-- -->
+                    <td class="p-2">{{ $question->question }}</td>
+                    <td class="divide-y-2 divide-gray-300 p-2">
+                        <!-- Show answers for multiple choice questions, or empty state for open questions -->
                         @if ($question->type === "multiple choice")
                             @foreach ($question->answers as $answer)
                                 <p class="{{ $answer->is_correct ? 'text-green-500 ' : '' }}">{{ $loop->iteration }}. {{  $answer->answer }}</p>
@@ -23,7 +21,7 @@
                             <p><i>Open antwoord</i></p>
                         @endif
                     </td>
-                    <td>
+                    <td class="p-2">
                         @if ($question->tags->count() > 0)
                             @foreach ($question->tags as $tag)
                                 {{ $tag->name }}
