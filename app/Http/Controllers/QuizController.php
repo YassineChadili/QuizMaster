@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -11,7 +12,8 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return view('quiz.index');
+        $quizzes = Quiz::all();
+        return view('quiz.index', ['quizzes' => $quizzes]);
     }
 
     /**
@@ -33,9 +35,10 @@ class QuizController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Quiz $quiz)
     {
-        //
+        $quiz->load('questions.answers', 'tags');
+        return view('quiz.show', ['quiz' => $quiz]);
     }
 
     /**

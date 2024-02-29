@@ -11,18 +11,26 @@
                 <div class="p-6 text-gray-900">
                     <form action="{{ route('quiz.export') }}" method="post">
                         @csrf
-                        <button type="submit">Exporteren</button>
                     </form>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Toets naam</th>
-                                <th>Vragen</th>
-                                <th>Antwoorden</th>
-                                <th>Tags</th>
-                            </tr>
-                        </thead>
-                    </table>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full table-auto">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Toets naam</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach($quizzes as $quiz)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <a href="{{ route('quiz.show', $quiz) }}" class="text-blue-500 hover:text-blue-700">{{ $quiz->name }}</a>
+                                            <button class="mr-4" type="submit">Exporteren</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
