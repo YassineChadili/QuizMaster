@@ -5,6 +5,7 @@
                 <th>Vraag</th>
                 <th>Antwoorden</th>
                 <th>Tags</th>
+                <th>Acties</th>
             </tr>
         </thead>
         <tbody class="border-2 border-black divide-y-2 divide-black">
@@ -13,9 +14,10 @@
                     <td class="p-2">{{ $question->question }}</td>
                     <td class="divide-y-2 divide-gray-300 p-2">
                         <!-- Show answers for multiple choice questions, or empty state for open questions -->
-                        @if ($question->type === "multiple choice")
+                        @if ($question->type === 'multiple choice')
                             @foreach ($question->answers as $answer)
-                                <p class="{{ $answer->is_correct ? 'text-green-500 ' : '' }}">{{ $loop->iteration }}. {{  $answer->answer }}</p>
+                                <p class="{{ $answer->is_correct ? 'text-green-500 ' : '' }}">{{ $loop->iteration }}.
+                                    {{ $answer->answer }}</p>
                             @endforeach
                         @else
                             <p><i>Open antwoord</i></p>
@@ -26,11 +28,18 @@
                             @foreach ($question->tags as $tag)
                                 {{ $tag->name }}
                                 <!-- Add ', ' between each tag -->
-                                {{ $question->tags->count() > 1 && $loop->iteration <= ($question->tags->count() - 1 ) ? ', ' : '' }}
+                                {{ $question->tags->count() > 1 && $loop->iteration <= $question->tags->count() - 1 ? ', ' : '' }}
                             @endforeach
                         @else
                             -
                         @endif
+                    </td>
+                    <td>
+                        <!-- On button click, delete the question  -->
+                        <button class="text-red-400 hover:underline hover:text-red-600"
+                            wire:click="delete({{ $question->id }})"
+                            wire:confirm="Weet je zeker dat je deze vraag wilt verwijderen?">
+                            Verwijderen</button>
                     </td>
                 </tr>
             @endforeach
