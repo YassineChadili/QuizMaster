@@ -27,7 +27,24 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        
+        if($request->type == "open"){
+
+        }
+        else if($request->type == "multiple"){
+            $request->validate([
+                'right_answer' => 'required',
+                'question' => 'required'
+            ]);
+
+            foreach($request->questions as $question){
+                if($question == null){
+                    return redirect()->back();
+                }
+            }
+        }
+        else{
+            // return error
+        }
     }
 
     /**
