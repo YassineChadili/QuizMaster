@@ -37,8 +37,8 @@ class QuizController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        $quiz->load('questions.answers', 'tags');
-        return view('quiz.show', ['quiz' => $quiz]);
+        $quiz->load('questions.answers', 'tags'); // Laden van gerelateerde gegevens (vragen, antwoorden, tags) voor de quiz
+        return view('quiz.show', ['quiz' => $quiz]); // Doorsturen van de $quiz variabele naar de 'quiz.show' view
     }
 
     /**
