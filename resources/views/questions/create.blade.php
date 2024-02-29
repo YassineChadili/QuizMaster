@@ -1,5 +1,9 @@
 <x-app-layout>
     <div class="question-type">
+        @if (\Session::has('error'))
+            <p style="color: red">{!! \Session::get('error') !!}</p>
+        @endif
+
         <div class="open-question">
             <input onclick="check_type()" type="radio" name="question_choice" id="open" value="open">
             <label for="open">Open vraag</label>
@@ -15,8 +19,12 @@
             <div class="form-input-questions">
                 <label for="name">Vraag</label>
                 <input type="text" name="question" id="">
-                <input type="hidden" name="type" value="open">
             </div>
+            <div class="form-input-questions">
+                <label for="name">Antwoord</label>
+                <input type="text" name="answer" id="">
+            </div>
+            <input type="hidden" name="type" value="open">
             <input type="submit" name="" id="">
         </form>
     </div>
@@ -31,15 +39,15 @@
                 <h2>Keuzes</h2>
                 <div class="form-input-questions-0">
                     <input type="radio" name="right_answer" value="0" id="">
-                    <input type="text" name="questions[]" id="">
+                    <input type="text" name="answers[]" id="">
                 </div>
                 <div class="form-input-questions-1">
                     <input type="radio" name="right_answer" value="1" id="">
-                    <input type="text" name="questions[]" id="">
+                    <input type="text" name="answers[]" id="">
                 </div>
                 <div class="form-input-questions-2">
                     <input type="radio" name="right_answer" value="2" id="">
-                    <input type="text" name="questions[]" id="">
+                    <input type="text" name="answers[]" id="">
                 </div>
             </div>
             <div class="addChoices">
@@ -76,7 +84,7 @@
             div.className = `form-input-questions-${questionNumber}`;
             div.innerHTML = `
                 <input type="radio" name="right_answer" value="${questionNumber}" id="">
-                <input type="text" name="questions[]">
+                <input type="text" name="answers[]">
             `;
             container.appendChild(div);
         }
