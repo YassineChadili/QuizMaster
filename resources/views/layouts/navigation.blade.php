@@ -8,12 +8,13 @@
                 <a class="mx-5 text-3xl" href="{{ url('/tags') }}">Tags</a>
             @endauth
         </div>
-        <div class="user">
+        <div class="flex items-center">
             @if (Route::has('login'))
                 @auth
-                    <a href="{{ url('/dashboard') }}"><img src="" alt="user-dashboard"></a>
+                    <a href="{{ url('/dashboard') }}"><img src="{{ asset('img/user-icon.png') }}" alt="user-dashboard"></a>
                 @else
-                    <a href="{{ route('login') }}"><img src="{{ asset('img/user-icon.png') }}" width="100" alt="user-login"></a>
+                    <a href="{{ route('register') }}" class="text-2xl">Register</a>
+                    <a href="{{ route('login') }}" class="text-2xl mx-5">Login</a>
                 @endauth
             @endif
         </div>
