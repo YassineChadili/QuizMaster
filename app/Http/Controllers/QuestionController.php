@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use App\Models\Question;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -21,7 +22,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('questions.create');
+        $tags = Tag::orderBy('id')->get();
+        return view('questions.create', compact('tags'));
     }
 
     /**
