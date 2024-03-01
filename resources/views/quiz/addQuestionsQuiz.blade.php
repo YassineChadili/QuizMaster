@@ -13,7 +13,7 @@
                     <form action="{{ route('quiz.addQuestionsToQuiz', $quiz) }}" method="post">
                         @csrf
                         <div class="form-group my-5">
-                            <label>Selecteer de vragen die u aan de quiz wilt toevoegen:</label>
+                            <label class="font-bold">Selecteer de vragen die u aan de quiz wilt toevoegen:</label>
                             @foreach($questions as $question)
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="question_ids[]" value="{{ $question->id }}">
