@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use App\Models\Question;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -21,7 +22,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('questions.create');
+        $tags = Tag::orderBy('id')->get();
+        return view('questions.create', compact('tags'));
     }
 
     /**
@@ -31,14 +33,18 @@ class QuestionController extends Controller
     {
         if($request->type == "open"){
             $request->validate([
-                'question' => 'required',
-                'answer' => 'required'
+                'question' => 'required|max:500',
+                'answer' => 'required|max:500',
+                'tag' => 'required|exists:tags,id'
             ]);
 
             $question = Question::create([
                 'question' => $request->question,
                 'type' => 'open',
             ]);
+
+            $tag = Tag::find($request->tag);
+            $question->tags()->attach($tag);
 
             $questionId = $question->id;
 
@@ -50,19 +56,23 @@ class QuestionController extends Controller
         }
         else if($request->type == "multiple"){
             $request->validate([
-                'right_answer' => 'required',
-                'question' => 'required'
+                'right_answer' => 'required|max:500',
+                'question' => 'required|max:500',
+                'tag' => 'required|exists:tags,id'
             ]);
 
             //Hij validate of alle keuzes zijn ingevuld (Answers)
             if(in_array(null, $request->answers, true)){
                 return redirect()->back();
             }
-
+            
             $question = Question::create([
                 'question' => $request->question,
                 'type' => 'multiple choice',
             ]);
+
+            $tag = Tag::find($request->tag);
+            $question->tags()->attach($tag);
 
             $questionId = $question->id;
 

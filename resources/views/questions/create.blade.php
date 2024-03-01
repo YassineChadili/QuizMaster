@@ -24,6 +24,15 @@
                 <label for="name">Antwoord</label>
                 <input type="text" name="answer" id="">
             </div>
+            <div class="form-input-questions">
+                <label for="tag">Tag toevoegen</label>
+                <select name="tag" id="">
+                    <option disabled selected value="">Kies een tag</option>
+                    @foreach($tags as $tag)
+                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+                    @endforeach
+                </select>
+            </div>
             <input type="hidden" name="type" value="open">
             <input type="submit" name="" id="">
         </form>
@@ -35,6 +44,15 @@
                 <div class="form-input-questions">
                     <label for="name">Vraag</label>
                     <input type="text" name="question" id="">
+                </div>
+                <div class="form-input-questions">
+                    <label for="tag">Tag toevoegen</label>
+                    <select name="tag" id="">
+                        <option disabled selected value="">Kies een tag</option>
+                        @foreach($tags as $tag)
+                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <h2>Keuzes</h2>
                 <div class="form-input-questions-0">
