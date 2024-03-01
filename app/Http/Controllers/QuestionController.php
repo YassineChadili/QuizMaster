@@ -35,21 +35,15 @@ class QuestionController extends Controller
             $request->validate([
                 'question' => 'required',
                 'answer' => 'required',
-                'tag' => 'required'
+                'tag' => 'required|exists:tags,id'
             ]);
-
-            //Check of de tag bestaat
-            $tag = Tag::find($request->tag);
-
-            if(!$tag){
-                return redirect()->back();
-            }
 
             $question = Question::create([
                 'question' => $request->question,
                 'type' => 'open',
             ]);
 
+            $tag = Tag::find($request->tag);
             $question->tags()->attach($tag);
 
             $questionId = $question->id;
@@ -64,26 +58,20 @@ class QuestionController extends Controller
             $request->validate([
                 'right_answer' => 'required',
                 'question' => 'required',
-                'tag' => 'required'
+                'tag' => 'required|exists:tags,id'
             ]);
 
             //Hij validate of alle keuzes zijn ingevuld (Answers)
             if(in_array(null, $request->answers, true)){
                 return redirect()->back();
             }
-
-            //Check of de tag bestaat
-            $tag = Tag::find($request->tag);
-
-            if(!$tag){
-                return redirect()->back();
-            }
-
+            
             $question = Question::create([
                 'question' => $request->question,
                 'type' => 'multiple choice',
             ]);
 
+            $tag = Tag::find($request->tag);
             $question->tags()->attach($tag);
 
             $questionId = $question->id;
