@@ -72,10 +72,19 @@ class QuestionController extends Controller
                 return redirect()->back();
             }
 
+            //Check of de tag bestaat
+            $tag = Tag::find($request->tag);
+
+            if(!$tag){
+                return redirect()->back();
+            }
+
             $question = Question::create([
                 'question' => $request->question,
                 'type' => 'multiple choice',
             ]);
+
+            $question->tags()->attach($tag);
 
             $questionId = $question->id;
 
