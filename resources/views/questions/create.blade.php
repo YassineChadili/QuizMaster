@@ -21,6 +21,10 @@
                 <input type="text" name="question" id="">
             </div>
             <div class="form-input-questions">
+                <label for="name">Antwoord</label>
+                <input type="text" name="answer" id="">
+            </div>
+            <div class="form-input-questions">
                 <label for="tag">Tag toevoegen</label>
                 <select name="tag" id="">
                     <option disabled selected value="">Kies een tag</option>
@@ -28,10 +32,6 @@
                         <option value="{{$tag->id}}">{{$tag->name}}</option>
                     @endforeach
                 </select>
-            </div>
-            <div class="form-input-questions">
-                <label for="name">Antwoord</label>
-                <input type="text" name="answer" id="">
             </div>
             <input type="hidden" name="type" value="open">
             <input type="submit" name="" id="">
