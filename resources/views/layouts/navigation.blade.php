@@ -11,6 +11,14 @@
         <div class="flex items-center">
             @if (Route::has('login'))
                 @auth
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a class="text-2xl mx-5 text-red-700" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                            .closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </a>
+                    </form>
                     <a href="{{ url('/dashboard') }}"><img src="{{ asset('img/user-icon.png') }}" alt="user-dashboard" width="150"></a>
                 @else
                     <a href="{{ route('register') }}" class="text-2xl">Register</a>
