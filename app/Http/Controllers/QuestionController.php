@@ -33,8 +33,8 @@ class QuestionController extends Controller
     {
         if($request->type == "open"){
             $request->validate([
-                'question' => 'required',
-                'answer' => 'required',
+                'question' => 'required|max:500',
+                'answer' => 'required|max:500',
                 'tag' => 'required|exists:tags,id'
             ]);
 
@@ -56,8 +56,8 @@ class QuestionController extends Controller
         }
         else if($request->type == "multiple"){
             $request->validate([
-                'right_answer' => 'required',
-                'question' => 'required',
+                'right_answer' => 'required|max:500',
+                'question' => 'required|max:500',
                 'tag' => 'required|exists:tags,id'
             ]);
 
