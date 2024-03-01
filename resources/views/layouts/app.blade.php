@@ -20,7 +20,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
+                <header class="bg-gray-300 shadow-lg">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -32,5 +32,8 @@
                 {{ $slot }}
             </main>
         </div>
+        <footer>
+            @include('layouts.footer')
+        </footer>
     </body>
 </html>
