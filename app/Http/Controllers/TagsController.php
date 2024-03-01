@@ -12,7 +12,8 @@ class TagsController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::orderBy('id')->get();
+        return view('tags.index', compact('tags'));
     }
 
     /**
@@ -58,16 +59,25 @@ class TagsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $tag->name = $request->name;
+        $tag->save();
+
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->questions()->detach();
+        $tag->delete();
+        return redirect()->back();
     }
 }
