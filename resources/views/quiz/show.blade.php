@@ -31,6 +31,9 @@
                     <ul>
                         @foreach($quiz->questions as $question)
                             <li class="font-semibold mt-4">{{ $question->question }}</li>
+                            @if ($question->type == 'open')
+                                <li class="mt-4">Open antwoord</li>
+                            @endif
                             <ul>
                                 @foreach($question->answers as $answer)
                                     <li>{{ $answer->answer }} (Correct: {{ $answer->is_correct ? 'Ja' : 'Nee' }})</li>
