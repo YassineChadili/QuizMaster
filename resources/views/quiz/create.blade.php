@@ -13,6 +13,17 @@
                         @csrf
                         <label for="name">Toets naam:</label>
                         <input type="text" name="name" id="name" required>
+                        <div class="form-group my-5">
+                            <label class="font-bold">Selecteer de vragen die u aan de quiz wilt toevoegen:</label>
+                            @foreach($questions as $question)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="question_ids[]" value="{{ $question->id }}">
+                                    <label class="form-check-label" for="question{{ $question->id }}">
+                                        {{ $question->question }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
                         <button type="submit">Toets aanmaken</button>
                     </form>
                 </div>

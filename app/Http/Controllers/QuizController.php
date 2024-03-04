@@ -22,7 +22,8 @@ class QuizController extends Controller
      */
     public function create()
     {
-        return view('quiz.create');
+        $questions = Question::all();
+        return view('quiz.create', ['questions' => $questions]);
     }
 
     /**
@@ -33,11 +34,14 @@ class QuizController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
-
-        Quiz::create([
+    
+        $quiz = Quiz::create([
             'name' => $request->name,
         ]);
-
+    
+        $questionIds = $request->input('question_ids');
+        $quiz->questions()->attach($questionIds);
+    
         return redirect()->route('quiz.index')->with('message', 'Toets is succesvol aangemaakt.');
     }
 
