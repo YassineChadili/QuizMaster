@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <a href="{{ route('quiz.index') }}" enctype="multipart/form-data">Terug</a>
-                    <form action="{{ route('quiz.addQuestionsToQuiz', $quiz) }}" method="post">
+                    <form action="{{ route('quiz.storeQuizQuestions', $quiz) }}" method="post">
                         @csrf
                         <div class="form-group my-5">
                             <label class="font-bold">Selecteer de vragen die u aan de quiz wilt toevoegen:</label>

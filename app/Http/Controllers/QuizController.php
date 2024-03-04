@@ -45,7 +45,7 @@ class QuizController extends Controller
         return redirect()->route('quiz.index')->with('message', 'Toets is succesvol aangemaakt.');
     }
 
-    public function addQuestionsToQuiz(Request $request, Quiz $quiz)
+    public function storeQuizQuestions(Request $request, Quiz $quiz)
     {
         // Haal de ID's op van de vragen die aan de quiz moeten worden toegevoegd
         $questionIds = $request->input('question_ids');
@@ -59,10 +59,10 @@ class QuizController extends Controller
         return redirect()->route('quiz.show', ['quiz' => $quiz])->with('message', 'Vragen zijn succesvol aan de quiz toegevoegd.');
     }
 
-    public function addQuestionsQuiz(Quiz $quiz)
+    public function showQuizQuestions(Quiz $quiz)
     {
         $questions = Question::all();
-        return view('quiz.addQuestionsQuiz', ['quiz' => $quiz, 'questions' => $questions]);
+        return view('quiz.showQuizQuestions', ['quiz' => $quiz, 'questions' => $questions]);
     }
 
     /**

@@ -27,7 +27,7 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <a href="{{ route('quiz.show', $quiz) }}" class="text-blue-500 hover:text-blue-700">{{ $quiz->name }}</a> <br>
-                                            <a href="{{ route('quiz.addQuestionsQuiz', $quiz) }}">Vragen toevoegen</a>
+                                            <a href="{{ route('quiz.showQuizQuestions', $quiz) }}">Vragen toevoegen</a>
                                             <form action="{{ route('quiz.export') }}" method="post">
                                                 @csrf
                                                 <button type="submit">Exporteren</button>
