@@ -94,7 +94,10 @@ class QuestionController extends Controller
      */
     public function edit(Question $question, Answer $answer)
     {
-        //
+        return view('questions.edit', [
+            'question' => $question,
+            'answer' => $answer
+        ]);
     }
 
     /**
