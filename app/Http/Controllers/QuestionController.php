@@ -105,7 +105,56 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        if($request->type == "open"){
+            $request->validate([
+                'question' => 'required',
+                'answer' => 'required'
+            ]);
+
+            $question = Question::get([
+                'question' => $request->question,
+                'type' => 'open',
+            ]);
+
+            $questionId = $question->id;
+
+            $answer = Answer::get([
+                'question_id' => $questionId,
+                'answer' => $request->answer,
+                'is_correct' => true
+            ]);
+        }
+        else if($request->type == "multiple"){
+            $request->validate([
+                'right_answer' => 'required',
+                'question' => 'required'
+            ]);
+
+            //Hij validate of alle keuzes zijn ingevuld (Answers)
+            if(in_array(null, $request->answers, true)){
+                return redirect()->back();
+            }
+
+            $question = Question::get([
+                'question' => $request->question,
+                'type' => 'multiple choice',
+            ]);
+
+            $questionId = $question->id;
+
+            foreach($request->answers as $number => $question){
+                $answer = Answer::get([
+                    'question_id' => $questionId,
+                    'answer' => $question,
+                    'is_correct' => ($number == $request->right_answer)
+                ]);
+            }
+        }
+        else{
+            return redirect()->back()->with('Error', 'Geen type question mee gegeven');
+        }
+
+        return redirect()->route('questions.index');
     }
 
     /**
