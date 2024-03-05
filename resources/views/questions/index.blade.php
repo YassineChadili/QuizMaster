@@ -14,7 +14,14 @@
             </div>
         @endif
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
+
+
                 <div class="p-6 text-gray-900">
+                    <a href="{{ route('questions.create') }}">
+                        <x-primary-button class="mb-4">Vraag toevoegen</x-primary-button>
+                    </a>
+
                     <livewire:questions.show-questions>
                 </div>
             </div>
