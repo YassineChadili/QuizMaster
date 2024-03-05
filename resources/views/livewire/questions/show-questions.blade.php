@@ -41,6 +41,9 @@
                             wire:confirm="Weet je zeker dat je deze vraag wilt verwijderen?">
                             Verwijderen</button>
                     </td>
+                    <td>
+                        <a class="text-green-400 hover:underline hover:text-green-500" href="{{ route('questions.edit', $question->id) }}">Aanpassen</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
