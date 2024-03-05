@@ -23,6 +23,9 @@ Route::get('/', function () {
 
 Route::resource('quiz', QuizController::class);
 Route::post('/quiz/export', [QuizController::class, 'export'])->name('quiz.export');
+Route::get('/quiz/{quiz}/showQuizQuestions', [App\Http\Controllers\QuizController::class, 'showQuizQuestions'])->name('quiz.showQuizQuestions');
+Route::post('/quiz/{quiz}/storeQuizQuestions', [App\Http\Controllers\QuizController::class, 'storeQuizQuestions'])->name('quiz.storeQuizQuestions');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
