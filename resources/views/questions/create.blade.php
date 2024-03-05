@@ -51,8 +51,8 @@
                 </div>
             </div>
             <div class="addChoices">
-                <button type="button" onclick="addQuestion()">Voeg nog een vraag toe</button>
-                <button type="button" onclick="removeQuestion()">Verwijder een vraag</button>
+                <button type="button" onclick="addChoice()">Voeg nog een antwoord toe</button>
+                <button type="button" onclick="removeChoice()">Verwijder een antwoord</button>
             </div>
             <input type="hidden" name="type" value="multiple">
             <input type="submit" name="" id="">
@@ -77,7 +77,7 @@
             }
         }
 
-        function addQuestion() {
+        function addChoice() {
             let container = document.querySelector('.choices');
             questionNumber = questionNumber + 1;
             let div = document.createElement('div');
@@ -89,7 +89,7 @@
             container.appendChild(div);
         }
 
-        function removeQuestion(){
+        function removeChoice(){
             if(questionNumber > 1){
                 let container = document.querySelector(`.form-input-questions-${questionNumber}`);
                 console.log(container);
