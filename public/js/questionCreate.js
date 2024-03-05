@@ -22,8 +22,8 @@ function addQuestion() {
     let div = document.createElement('div');
     div.className = `form-input-questions-${questionNumber}`;
     div.innerHTML = `
-        <input type="radio" name="right_answer" value="${questionNumber}" id="">
-        <input type="text" name="answers[]">
+        <input type="radio" name="right_answer" value="${questionNumber}">
+        <input type="text" name="answers[]" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"/>
     `;
     container.appendChild(div);
 }
