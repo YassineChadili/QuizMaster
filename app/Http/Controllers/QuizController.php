@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -23,17 +24,34 @@ class QuizController extends Controller
     public function create()
     {
         $questions = Question::all();
-        return view('quiz.create', ['questions' => $questions]);
+        $tags = Tag::pluck('name'); // Haalt alleen de name van de tag op
+        $selectedTag = null;
+        return view('quiz.create', ['questions' => $questions, 'tags' => $tags, 'selectedTag' => $selectedTag]);
     }
 
     public function search(Request $request)
     {
-        $questions = Question::all();
+        $questions = Question::query();
         $search = $request->search;
-        $questions = Question::where('question', 'like', "%$search%")->get();
-
-        return view('quiz.create')->with('questions', $questions)->with('search', $search);
-    }
+        $tag = $request->tag;
+    
+        if ($search) {
+            $questions->where('question', 'like', "%$search%");
+        }
+    
+        if ($tag) {
+            $questions->whereHas('tags', function ($query) use ($tag) {
+                $query->where('name', $tag);
+            });
+        }
+    
+        $questions = $questions->get();
+    
+        $tags = Tag::pluck('name');
+        $selectedTag = $tag; // Geselecteerde tag voor de view
+    
+        return view('quiz.create', ['questions' => $questions, 'tags' => $tags, 'selectedTag' => $selectedTag, 'search' => $search]);
+    }    
 
     /**
      * Store a newly created resource in storage.

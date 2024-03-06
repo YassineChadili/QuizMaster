@@ -15,6 +15,14 @@
                                 <div class="flex items-center">
                                     <input class="border border-gray-300 rounded-md p-2 mr-2" name="search" placeholder="Filter op vraag...."
                                         value="{{ isset($search) ? $search : '' }}">
+
+                                        <select name="tag">
+                                            <option value="">Alle Tags</option>
+                                            @foreach($tags as $tag)
+                                                <option value="{{ $tag }}" @if($tag == $selectedTag) selected @endif>{{ $tag }}</option>
+                                            @endforeach
+                                        </select>
+                                        
                                     <button type="submit">Filteren</button>
                                 </div>
                             </form>
