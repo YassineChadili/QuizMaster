@@ -28,7 +28,11 @@ class QuizController extends Controller
 
     public function search(Request $request)
     {
-        
+        $questions = Question::all();
+        $search = $request->search;
+        $questions = Question::where('question', 'like', "%$search%")->get();
+
+        return view('quiz.create')->with('questions', $questions)->with('search', $search);
     }
 
     /**

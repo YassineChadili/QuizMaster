@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <form method="get" action="/search">
                                 <div class="flex items-center">
-                                    <input class="border border-gray-300 rounded-md p-2 mr-2" name="search" placeholder="Zoek..."
+                                    <input class="border border-gray-300 rounded-md p-2 mr-2" name="search" placeholder="Filter op vraag...."
                                         value="{{ isset($search) ? $search : '' }}">
                                     <button type="submit">Filteren</button>
                                 </div>
