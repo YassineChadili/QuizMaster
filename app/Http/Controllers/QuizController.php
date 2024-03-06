@@ -26,6 +26,11 @@ class QuizController extends Controller
         return view('quiz.create', ['questions' => $questions]);
     }
 
+    public function search(Request $request)
+    {
+        
+    }
+
     /**
      * Store a newly created resource in storage.
      */

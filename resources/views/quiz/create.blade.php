@@ -9,6 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    <div class="flex justify-between mb-10">
+                        <div class="form-group">
+                            <form method="get" action="/search">
+                                <div class="flex items-center">
+                                    <input class="border border-gray-300 rounded-md p-2 mr-2" name="search" placeholder="Zoek..."
+                                        value="{{ isset($search) ? $search : '' }}">
+                                    <button type="submit">Filteren</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <form action="{{ route('quiz.store') }}" method="post">
                         @csrf
                         <label for="name">Toets naam:</label>
