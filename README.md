@@ -17,7 +17,6 @@ base_url/quiz
 base_url/questions
 - Vragen aanmaken
 - Vragen inzien
-- Vragen aanpassen
 
 base_url/tags
 - Tags aanmaken
